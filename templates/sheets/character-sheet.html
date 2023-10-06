@@ -45,6 +45,15 @@
 						{{{selectOptions configuration.usageDieList selected=actor.system.doom localize=true }}}
 					</select>
 				</div>
+				<div class="bsh-field">
+					<label class="bsh-label" for="system.boast">
+                        <i class="fas fa-dice-two bsh-boast-roll-icon bsh-action-icon" title="{{localize 'bsh.fields.titles.rollDie'}}" data-actor="{{actor.id}}"></i>
+					    {{localize "bsh.fields.labels.boastDie"}}
+					</label>
+					<select name="system.boast">
+						{{{selectOptions configuration.usageDieList selected=actor.system.doom localize=true }}}
+					</select>
+				</div>
 			</div>
 
 			<div class="bsh-tab-container">
