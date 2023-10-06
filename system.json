@@ -9,10 +9,10 @@
             "ko-fi": "peterwood"
         }
     ],
-  "version": "1.1.2",
+  "version": "1.1.3",
   "compatibility": {
-    "minimum": 10,
-    "verified": "10.291"
+    "minimum": 11,
+    "verified": "11.307"
   },
   "esmodules": ["black-sword-hack.js"],
   "styles": ["black-sword-hack.css"],
@@ -24,7 +24,7 @@
      "name": "Spanish",
      "path": "languages/es.json"}
   ],
-  "url": "https://github.com/free-beer/black-sword-hack",
-  "manifest": "https://raw.githubusercontent.com/free-beer/black-sword-hack/master/system.json",
-  "download": "https://github.com/free-beer/black-sword-hack/archive/refs/tags/v1.1.2.zip"
+  "url": "https://github.com/mcutshaw/black-sword-hack",
+  "manifest": "https://raw.githubusercontent.com/mcutshaw/black-sword-hack/master/system.json",
+  "download": "https://github.com/mcutshaw/black-sword-hack/archive/refs/tags/v1.1.2.zip"
 }

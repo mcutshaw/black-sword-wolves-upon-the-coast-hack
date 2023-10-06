@@ -36,26 +36,23 @@
       "assassin": {
         "name": "Assassin (Decadent, Unique)"
       },
+      "accursed": {
+        "name": "Accursed (Decadent, Demi-human)"
+      },
       "berserker": {
         "name": "Berserker (Barbarian, Unique)"
       },
       "bodyguard": {
         "name": "Bodyguard (Civilized)"
       },
-      "bookworm": {
-        "name": "Bookworm (Civilized)"
-      },
-      "changeling": {
-        "name": "Changeling (Decadent)"
+      "beastkin": {
+        "name": "Beast kin (Barbarian, Demi-human)"
       },
       "chieftain": {
         "name": "Chieftain (Barbarian)"
       },
-      "diplomat": {
-        "name": "Diplomat (Civilized)"
-      },
-      "forbidden_knowledge": {
-        "name": "Forbidden Knowledge (Decadent)"
+      "folk_magician": {
+        "name": "Folk magician (Barbarian)"
       },
       "herbalist": {
         "name": "Herbalist (Barbarian)"
@@ -63,54 +60,96 @@
       "hunter": {
         "name": "Hunter (Barbarian)"
       },
-      "inventor": {
-        "name": "Inventor (Civilized, Unique)"
-      },
-      "legionnaire": {
-        "name": "Legionnaire (Civilized)"
-      },
-      "pit_fighter": {
-        "name": "Pit Fighter (Decadent)"
-      },
       "raider": {
         "name": "Raider (Barbarian)"
       },
       "scout": {
         "name": "Scout (Barbarian)"
       },
+      "seakin": {
+        "name": "Sea kin (Barbarian, Demi-human)"
+      },
       "shaman": {
         "name": "Shaman (Barbarian)"
-      },
-      "snake_blood": {
-        "name": "Snake Blood (Decadent)"
-      },
-      "sophist": {
-        "name": "Sophist (Civilized)"
-      },
-      "storyteller": {
-        "name": "Storyteller (Barbarian)"
-      },
-      "street_urchin": {
-        "name": "Street Urchin (Civilized)"
-      },
-      "surgeon": {
-        "name": "Surgeon (Civilized)"
       },
       "survivor": {
         "name": "Survivor (Barbarian)"
       },
-      "swordmaster": {
-        "name": "Swordmaster (Civilized)"
+      "storyteller": {
+        "name": "Storyteller (Barbarian)"
+      },
+      "wildling": {
+        "name": "Wildling (Barbarian)"
+      },
+      "bookworm": {
+        "name": "Bookworm (Civilized)"
+      },
+      "changeling": {
+        "name": "Changeling (Civilized, Demi-human)"
+      },
+      "diplomat": {
+        "name": "Diplomat (Civilized)"
+      },
+      "duelist": {
+        "name": "Duelist (Civilized)"
+      },
+      "legionnaire": {
+        "name": "Legionnaire (Civilized)"
+      },
+      "missionary": {
+        "name": "Missionary (Civilized)"
+      },
+      "ritualist": {
+        "name": "Ritualist (Civilized)"
+      },
+      "sophist": {
+        "name": "Sophist (Civilized)"
+      },
+      "street_urchin": {
+        "name": "Street urchin (Civilized)"
+      },
+      "surgeon": {
+        "name": "Surgeon (Civilized)"
+      },
+      "weapon_master": {
+        "name": "Weapon-master (Civilized, Unique)"
+      },
+      "antiquarian": {
+        "name": "Antiquarian (Decadent)"
+      },
+      "created": {
+        "name": "Created (Decadent, Demi-human)"
+      },
+      "forbidden_knowledge": {
+        "name": "Forbidden knowledge (Decadent)"
+      },
+      "gambler": {
+        "name": "Gambler (Decadent)"
+      },
+      "immortalist": {
+        "name": "Immortalist (Decadent)"
+      },
+      "pit_fighter": {
+        "name": "Pit-fighter (Decadent)"
+      },
+      "poisoner": {
+        "name": "Poisoner (Decadent)"
+      },
+      "snake_kin": {
+        "name": "Snake kin (Decadent, Demi-human)"
+      },
+      "street_fighter": {
+        "name": "Street fighter (Decadent)"
       },
       "vicious": {
         "name": "Vicious (Decadent)"
       },
       "warlock": {
         "name": "Warlock (Decadent)"
-      },
-      "wildling": {
-        "name": "Wildling (Barbarian)"
       }
+    
+    
+    
     },
     "births": {
       "1": "...in a jeweled tower of a corrupt empire",
