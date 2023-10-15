@@ -19,12 +19,9 @@
   "languages": [
   	{"lang": "en",
      "name": "English",
-     "path": "languages/en.json"},
-    {"lang": "es",
-     "name": "Spanish",
-     "path": "languages/es.json"}
+     "path": "languages/en.json"}
   ],
-  "url": "https://github.com/mcutshaw/black-sword-hack",
-  "manifest": "https://raw.githubusercontent.com/mcutshaw/black-sword-hack/master/system.json",
-  "download": "https://github.com/mcutshaw/black-sword-hack/archive/refs/heads/master.zip"
+  "url": "https://github.com/mcutshaw/black-sword-wolves-upon-the-coast-hack",
+  "manifest": "https://raw.githubusercontent.com/mcutshaw/black-sword-wolves-upon-the-coast-hack/master/system.json",
+  "download": "https://github.com/mcutshaw/black-sword-wolves-upon-the-coast-hack/archive/refs/heads/master.zip"
 }

@@ -1,0 +1,9 @@
+<div class="bsh-tab-body bsh-boasts-tab {{tabBodySelectionClass 'boasts'}}">
+	<div class="bsh-field">
+		<h2>{{localize "bsh.fields.labels.boasts"}}</h2>
+		<p class="bsh-blurb">{{localize "bsh.blurbs.boasts"}}</p>
+    {{#each actor.system.boasts}}
+        {{> "systems/black-sword-hack/templates/partials/cs-boast-entry.hbs"}}
+    {{/each}}
+	</div>
+</div>

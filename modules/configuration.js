@@ -424,16 +424,16 @@ BSHConfiguration.itemRarityList = {
 };
 
 BSHConfiguration.levelSettings = [
-  {level: 1, stories: 0},
-  {level: 2, stories: 1},
-  {level: 3, stories: 3},
-  {level: 4, stories: 7},
-  {level: 5, stories: 11},
-  {level: 6, stories: 16},
-  {level: 7, stories: 22},
-  {level: 8, stories: 29},
-  {level: 9, stories: 37},
-  {level: 10, stories: 46},
+  {level: 1, boasts: 1},
+  {level: 2, boasts: 2},
+  {level: 3, boasts: 3},
+  {level: 4, boasts: 4},
+  {level: 5, boasts: 5},
+  {level: 6, boasts: 6},
+  {level: 7, boasts: 7},
+  {level: 8, boasts: 8},
+  {level: 9, boasts: 9},
+  {level: 10, boasts: 10},
 ];
 
 BSHConfiguration.languageList = {

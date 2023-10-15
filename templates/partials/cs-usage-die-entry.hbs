@@ -1,0 +1,18 @@
+{{#each actor.system.usageDie}}
+
+
+<div class="bsh-field">
+    {{log ../actor}}
+    <label class="bsh-label" for="actor.system.usageDie.{{@key}}">
+        <i class="fas fa-dice-two bsh-usage-roll-icon bsh-action-icon" dicetype="{{@key}}" title="{{localize 'bsh.fields.titles.rollDie'}}"
+            data-actor="{{../actor.id}}"></i>
+            {{capitalize @key}}
+            <i class="fas fa-minus-square bsh-action-icon bsh-delete-usage" data="{{@key}}"></i>
+    </label>
+    <select name="actor.system.usageDie.{{@key}}" class="usageselect">
+						{{{selectOptions ../configuration.usageDieList selected=this localize=true }}}
+					</select>
+   
+
+</div>
+{{/each}}

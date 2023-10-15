@@ -244,7 +244,7 @@
       "critical_failure": "Your next attribute test or attack roll should be made with disadvantage!",
       "defend_fumble": "Your armour does not protect you from the damage of this attack!",
       "random_generation": "By clicking on the button below you'll randomly generate all details for your character according to the default rules of the system. Note that doing this will overwrite your current character settings - you have been warned!",
-      "stories": "Stories dictate your level. The more stories you've survived the higher your will be in level. The list below records the stories you've been part of and what level that makes you. Remember to also select your gifts and attribute bonuses as you attain the appropriate level."
+      "boasts": "When you make and complete a number of worthy Boasts equal to your current, you gain a level."
     },
     "buttons": {
       "cancel": "Cancel",
@@ -336,7 +336,7 @@
     "fields": {
       "labels": {
         "advantage": "Advantage",
-        "adventureName": "Story Name",
+        "adventureName": "Boast made...",
         "armourDescription": "Armour Description",
         "armourType": "Armour Type",
         "attribute": "Attribute",
@@ -374,7 +374,7 @@
         "secondBackground": "Background 2",
         "shield": "Shield?",
         "standardRoll": "Standard", 
-        "stories": "Stories",
+        "boasts": "Boasts",
         "thirdBackground": "Background 3",
         "title": "Title",
         "threat": "Threat Level",
@@ -511,7 +511,7 @@
       "spiritName": "Name",
       "spirits": "Spirits",
       "statBonuses": "Stat Bonuses",
-      "story": "Story",
+      "boast": "Boast",
       "wealth": "Wealth",
       "weaponKind": "Type",
       "weaponName": "Weapon",
@@ -711,7 +711,7 @@
         "equipment": "Possessions",
         "front": "Front Page",
         "magic": "Magic",
-        "saga": "Saga"
+        "boasts": "Boasts"
       }
     },
     "weapons": {

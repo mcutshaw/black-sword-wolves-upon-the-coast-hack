@@ -35,6 +35,7 @@
         "unarmed": "d4"
       },
       "doom": "d6",
+      "usageDie": {"doom": "d6", "boast": "d6"},
       "gifts": [
         "", "", "", "", ""
       ],
@@ -44,7 +45,7 @@
       "level": 1,
       "origin": "barbarian",
       "playerName": "",
-      "stories": {
+      "boasts": {
         "00": {"improvements": {
                  "attributes": {
                    "first": {"choice": "none"},

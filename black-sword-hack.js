@@ -1,7 +1,7 @@
 import {BSHActor} from './modules/documents/bsh_actor.js';
 import BSHCombat from './modules/combat.js';
 import {BSHConfiguration} from './modules/configuration.js';
-import {CLASSIC_ORIGINS} from './modules/constants.js';
+//import {CLASSIC_ORIGINS} from './modules/constants.js';
 import {runMigrations} from './modules/migrations.js';
 import {BSHItem} from './modules/documents/bsh_item.js';
 import CharacterSheet from './modules/sheets/character-sheet.js';
@@ -45,14 +45,15 @@ async function preloadHandlebarsTemplates() {
                    "systems/black-sword-hack/templates/partials/cs-front-page-tab-body.hbs",
                    "systems/black-sword-hack/templates/partials/cs-gift-entry.hbs",
                    "systems/black-sword-hack/templates/partials/cs-magic-tab-body.hbs",
-                   "systems/black-sword-hack/templates/partials/cs-saga-tab-body.hbs",
+                   "systems/black-sword-hack/templates/partials/cs-boasts-tab-body.hbs",
                    "systems/black-sword-hack/templates/partials/cs-spell-entry.hbs",
                    "systems/black-sword-hack/templates/partials/cs-spirit-entry.hbs",
-                   "systems/black-sword-hack/templates/partials/cs-story-entry.hbs",
+                   "systems/black-sword-hack/templates/partials/cs-boast-entry.hbs",
                    "systems/black-sword-hack/templates/partials/cs-tab-bodies.hbs",
                    "systems/black-sword-hack/templates/partials/cs-tab-labels.hbs",
                    "systems/black-sword-hack/templates/partials/cs-weapon-entry.hbs",
-                   "systems/black-sword-hack/templates/partials/cr-action-entry.hbs"];
+                   "systems/black-sword-hack/templates/partials/cr-action-entry.hbs",
+                   "systems/black-sword-hack/templates/partials/cs-usage-die-entry.hbs"];
     return(loadTemplates(paths))
 }
 
@@ -228,6 +229,13 @@ Hooks.once("init", function() {
             text = game.i18n.localize("bsh.dice.exhausted");
         }
         return(text);
+    });
+
+    Handlebars.registerHelper('times', function(n, block) {
+        var accum = '';
+        for(var i = 0; i < n; ++i)
+            accum += block.fn(i);
+        return accum;
     });
 
     Handlebars.registerHelper("weaponType", function(type) {

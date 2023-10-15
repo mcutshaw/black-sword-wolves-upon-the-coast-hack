@@ -85,8 +85,8 @@ export function calculateAttributeValues(data, configuration) {
         }
     });
 
-    Object.keys(data.stories).forEach((key) => {
-        let story = data.stories[key];
+    Object.keys(data.boasts).forEach((key) => {
+        let story = data.boasts[key];
 
         if(story.improvements && story.improvements.attributes && story.improvements.attributes.granted) {
             let attribute = story.improvements.attributes.first.choice;
@@ -130,20 +130,20 @@ export function calculateMaximumHitPoints(context, level) {
 }
 
 /**
- * Calculates a characters level based on the number of stories they have
+ * Calculates a characters level based on the number of boasts they have
  * recorded against them.
  */
 export function calculateLevel(data, configuration) {
-    let totalStories = 0;
-    let stories      = data.stories;
+    let totalBoasts = 0;
+    let boasts      = data.boasts;
 
-    Object.keys(stories).sort().forEach((index) => {
-        if(stories[index].title && stories[index].title.trim() !== "") {
-            totalStories++;
+    Object.keys(boasts).sort().forEach((index) => {
+        if(boasts[index].title && boasts[index].title.trim() !== "") {
+            totalBoasts++;
         }
     });
 
-    return(totalStories + 1);
+    return(totalBoasts + 1);
 }
 
 /**
@@ -302,7 +302,7 @@ export async function handleRollDieEvent(event) {
     let element = event.currentTarget;
     let actor   = game.actors.find((a) => a.id === element.dataset.id);
     let title   = game.i18n.localize(`bsh.fields.titles.dieRolls.${element.dataset.type}`)
-
+    console.log(title)
     event.preventDefault();
     logDieRoll(actor, element.dataset.die, title, event.shiftKey, event.ctrlKey);
     return(false);

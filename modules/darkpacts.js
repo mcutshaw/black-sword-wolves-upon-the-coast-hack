@@ -36,7 +36,7 @@ export async function summonDemon(demonId, rollType) {
     let demon = getOwnedItemById(demonId);
 
     if(demon && demon.type === "demon") {
-        if(demon.actor.system.doom !== "exhausted") {
+        if(demon.actor.system.usageDie.doom !== "exhausted") {
             if(demon.actor.system.summoning.demon !== "unused") {
                 if(rollType === "advantage") {
                     rollType = "standard";
@@ -71,7 +71,7 @@ export async function summonSpirit(spiritId, rollType) {
     let spirit = getOwnedItemById(spiritId);
 
     if(spirit && spirit.type === "spirit") {
-        if(spirit.actor.system.doom !== "exhausted") {
+        if(spirit.actor.system.usageDie.doom !== "exhausted") {
             if(spirit.actor.system.summoning.spirit !== "unused") {
                 if(rollType === "advantage") {
                     rollType = "standard";

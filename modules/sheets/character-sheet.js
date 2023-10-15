@@ -3,12 +3,13 @@ import {CLASSIC_ORIGINS} from '../constants.js';
 import {initializeCollapsibles} from '../collapsible.js';
 import {logDefendRoll,
 	    logDoomDieRoll,
+		logBoastDieRoll,
 	    logInitiativeRoll,
-	    logPerceptionRoll} from '../chat_messages.js';
+	    logPerceptionRoll,
+		logOtherUsageDieRoll} from '../chat_messages.js';
 import {resetDarkPact,
         summonDemon,
         summonSpirit} from '../darkpacts.js';
-import {rollDoom} from '../doom.js';
 import {getCharacterBackgrounds,
         getCustomOrigins} from '../origins.js';
 import {takeLongRest,
@@ -31,6 +32,11 @@ import {castSpell,
         resetSpellState,
         resetSpellStatesForActor} from '../spells.js';
 
+
+
+		   
+
+
 export default class CharacterSheet extends ActorSheet {
 	static get defaultOptions() {
 	    return(mergeObject(super.defaultOptions,
@@ -46,7 +52,7 @@ export default class CharacterSheet extends ActorSheet {
 
         context.flags         = context.actor.flags;
         context.customOrigins = game.settings.get("black-sword-hack", "customOrigins");
-        Object.keys(data.stories).forEach((key) => data.stories[key].configuration = CONFIG.configuration);
+        Object.keys(data.boasts).forEach((key) => data.boasts[key].configuration = CONFIG.configuration);
 
         if(context.actor.type === "character") {
             this._prepareCharacterData(context);
@@ -76,11 +82,16 @@ export default class CharacterSheet extends ActorSheet {
 		html.find(".bsh-reset-spell-state-icon").click(this._onResetSpellStateClicked.bind(this));
 		html.find(".bsh-reset-all-spells-icon").click(this._onResetAllSpellStatesClicked.bind(this));
 		html.find(".bsh-doom-roll-icon").click(this._onRollDoomDieClicked.bind(this));
+		html.find(".bsh-usage-roll-icon").click(this._onRollOtherUsageDieClicked.bind(this));
 		html.find(".bsh-reset-dark-pact-icon").click(this._onResetDarkPactClicked.bind(this));
 		html.find(".bsh-summon-demon-icon").click(this._onSummonDemonClicked.bind(this));
 		html.find(".bsh-summon-spirit-icon").click(this._onSummonSpiritClicked.bind(this));
 		html.find(".bsh-random-character-generator-button").click(this._onRandomizeMyCharacterClicked.bind(this));
 		html.find(".bsh-rest-icon").click(this._onTakeRestClicked.bind(this));
+		html.find(".usageselect").click(this._onUsageSelectClicked.bind(this));
+		html.find(".bsh-delete-usage").click(this._onDeleteUsageClicked.bind(this));
+		html.find(".bsh-add-usage-die").click(this._onAddUsageClicked.bind(this));
+		
 		initializeCollapsibles();
 		super.activateListeners(html);
 	}
@@ -96,6 +107,93 @@ export default class CharacterSheet extends ActorSheet {
 
 		return(origins);
 	}
+	_onDeleteUsageClicked(event) {
+		let d = Dialog.confirm({
+			title: "Delete Usage Die",
+			content: "<p>Are you sure? Also don't delete the doom die...</p>",
+			yes: () => this.deleteusage(event, event.target.attributes.data.value),
+			no: () => console.log("dismiss"),
+			defaultYes: false
+			});
+	}
+
+	_onAddUsageClicked(event) {
+		new Dialog({
+			title:'New Usage Die',
+			content:`
+			  <form>
+				<div class="form-group">
+				  <label>Name</label>
+				  <input type='text' name='inputField'></input>
+				</div>
+			  </form>`,
+			buttons:{
+			  yes: {
+				icon: "<i class='fas fa-check'></i>",
+				label: `Apply Changes`
+			  }},
+			default:'yes',
+			close: html => {
+			  let result = html.find('input[name=\'inputField\']');
+			  if (result.val()!== '') {
+				this.addusage(event, result.val());
+				}
+			  }
+		  }).render(true);
+	}
+
+	addusage(event, result) {
+		let element = event.currentTarget.attributes["data-actor"].value;
+		let actor = getActorById(element);
+		let curusage = {system: {usageDie: actor.system.usageDie}}
+		curusage.system.usageDie[result] = "d6"
+		actor.update(curusage)
+	}
+	deleteusage(event, diename) {
+		let element = event.currentTarget.previousElementSibling.attributes["data-actor"].value;
+		let actor = getActorById(element);
+		
+		
+		let todelkey = "system.usageDie.-=" + diename
+		console.log(todelkey)
+		console.log({[todelkey]: null})
+		actor.update({[todelkey]: null})
+		console.log(actor)
+	}
+
+
+	
+
+
+	_onUsageSelectClicked(event) {
+		// Get the selected value from the dropdown
+		const selectedValue = event.target.value;
+	
+		
+		// Extract the attribute name from the clicked select field
+		const attributeName = event.currentTarget.name;
+		console.log(event)
+		let element = event.currentTarget;
+		let actor = getActorById(element.form.attributes['data-id'].value);
+		const keys = attributeName.split('.'); // Split the dot notation string into keys
+		const result = {};
+	
+		let current = result;
+	
+		for (let i = 1; i < keys.length; i++) {
+			const key = keys[i];
+			current[key] = i === keys.length - 1 ? selectedValue : {}; // If it's the last key, assign the provided value; otherwise, create an empty object
+			current = current[key];
+		}
+		event.preventDefault();
+		let curusage = actor.system.usageDie
+		console.log(curusage)
+		console.log(current)
+		result.id = actor.id;
+		actor.update(result)
+	
+	}
+	
 
 	_onAttributeRollClicked(event) {
 		handleRollAttributeDieEvent(event);
@@ -280,6 +378,27 @@ export default class CharacterSheet extends ActorSheet {
 		return(false);
 	}
 
+
+	_onRollOtherUsageDieClicked(event) {
+		console.log(event)
+		let element = event.currentTarget;
+
+		event.preventDefault();
+		if(element.dataset.actor) {
+			let actor = getActorById(element.dataset.actor);
+
+			if(actor) {
+				logOtherUsageDieRoll(actor, event.shiftKey, event.ctrlKey, event.currentTarget.attributes.dicetype.nodeValue)
+			} else {
+				console.error(`Unable to find an actor with the id '${element.dataset.actor}'.`);
+			}
+		} else {
+			console.error("Roll of the usage die requested but requesting element has no actor id.");
+		}
+
+		return(false);
+	}
+
 	_onTabLabelClicked(event) {
 		let element   = event.currentTarget;
 		event.preventDefault();
@@ -301,7 +420,7 @@ export default class CharacterSheet extends ActorSheet {
 		        }
 
 		        data.id = actor.id;
-				actor.update(data, {diff: true});
+				actor.update(data);
 				this.selectTabLabel(element.dataset.tab, actor);
 				this.showTabBody(element.dataset.tab, actor);
 			} else {

@@ -1,5 +1,6 @@
 import {BSHConfiguration} from './configuration.js';
 import {calculateCharacterData, downgradeDie, getActorById, interpolate, rollEm} from './shared.js';
+import { rollUsage } from './usagedie.js';
 
 /**
  * This function makes a doom role for a specified actor, downgrading the actors
@@ -9,50 +10,7 @@ import {calculateCharacterData, downgradeDie, getActorById, interpolate, rollEm}
  * die roll (the default).
  */
 export function rollDoom(actor, rollType="standard") {
-    let result    = {die: {ending: null,
-                           starting: null},
-                     downgraded: false,
-                     rolled: false};
-    let actorData = actor.system;
-
-    result.die.starting = result.die.ending = actorData.doom;
-    if(actorData.doom !== "exhausted") {
-        let data      = {system: {doom: actorData.doom}};
-        let dice;
-
-
-        result.die.starting = actorData.doom;
-        result.rolled       = true;
-        if(rollType === "advantage") {
-            dice = new Roll(`2${actorData.doom}kh`);
-        } else if(rollType === "disadvantage") {
-            dice = new Roll(`2${actorData.doom}kl`);
-        } else {
-            dice = new Roll(`1${actorData.doom}`);
-        }
-
-        return(rollEm(dice).then((roll) => {
-                    result.formula = roll.formula;
-                    result.result  = roll.total;
-                    if(roll.total < 3) {
-                        let newDie = downgradeDie(actorData.doom);
-
-                        result.downgraded = true;
-                        result.die.ending = newDie;
-                        data.system.doom  = newDie;
-                        if(result.die.ending === "exhausted") {
-                            ui.notifications.warn(interpolate("bsh.messages.doom.failExhausted", {name: actor.name}));
-                        }
-                    } else {
-                        result.die.ending = actor.doom;
-                    }
-                    actor.update(data, {diff: true});
-                    return(result);
-                }));
-    } else {
-        console.error(`Unable to roll doom for ${actor.name} as their doom die is exhausted.`);
-        ui.notifications.error(interpolate("bsh.messages.doom.exhausted", {name: actor.name}));
-    }
+    return rollUsage(actor, rollType)
 }
 
 /**
@@ -89,7 +47,7 @@ export function resetDoomDie(actor) {
 
         calculateCharacterData(actor, CONFIG.configuration);
         if(actor.level > 9) {
-            updates.system.doom = "d8";
+            updates.ystem.usageDie.doom = "d8";
         }
         actor.update(updates, {diff: true});
     } else {
